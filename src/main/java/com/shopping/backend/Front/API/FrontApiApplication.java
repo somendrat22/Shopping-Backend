@@ -1,13 +1,13 @@
-package com.shopping.database.api.Database.API;
+package com.shopping.backend.Front.API;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DatabaseApiApplication {
+public class FrontApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DatabaseApiApplication.class, args);
+		SpringApplication.run(FrontApiApplication.class, args);
 	}
 
 }
