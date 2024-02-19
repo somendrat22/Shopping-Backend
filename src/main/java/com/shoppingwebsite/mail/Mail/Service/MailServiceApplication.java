@@ -1,13 +1,13 @@
-package com.shopping.database.api.Database.API;
+package com.shoppingwebsite.mail.Mail.Service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DatabaseApiApplication {
+public class MailServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DatabaseApiApplication.class, args);
+		SpringApplication.run(MailServiceApplication.class, args);
 	}
 
 }
