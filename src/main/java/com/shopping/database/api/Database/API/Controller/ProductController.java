@@ -22,7 +22,7 @@ public class ProductController {
     @Autowired
     PortalUserRepo portalUserRepo;
     @PostMapping("/add")
-    public Product addProduct(@RequestBody ProductReqBody product){
+    public ProductReqBody addProduct(@RequestBody ProductReqBody product){
         UUID id = UUID.randomUUID();
         Product p = new Product();
         p.setId(id);
@@ -34,6 +34,6 @@ public class ProductController {
         PortalUser seller = portalUserRepo.findById(product.getSellerId()).orElse(null);
         p.setSeller(seller);
         productRepo.save(p);
-        return p;
+        return product;
     }
 }
