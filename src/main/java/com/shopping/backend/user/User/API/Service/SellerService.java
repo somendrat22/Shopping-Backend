@@ -56,9 +56,9 @@ public class SellerService {
         // Mail Service
         ShoppingLogger.logger.info("Calling Mail API to notify seller that product got added");
         String mailUrl = ApiUrlUtil.mailApiURL + "/seller/addproduct";
+        String mailText = generateSellerMailForAddProduct(userResp.getBody().getName(), sellerProductRegistrationDTO.getProductName(), sellerProductRegistrationDTO.getPrice(), sellerProductRegistrationDTO.getQunatity(), sellerProductRegistrationDTO.getProductType());
 
-        AddProductMailReqBody addProductMailReqBody = new AddProductMailReqBody(userResp.getBody().getEmail(), "Hi, How are you ?", "Hii Subject", userResp.getBody().getName());
-
+        AddProductMailReqBody addProductMailReqBody = new AddProductMailReqBody(userResp.getBody().getEmail(), mailText, "Congratulations !! Product got added", userResp.getBody().getName());
         HttpEntity mailEntity = new HttpEntity(addProductMailReqBody, httpHeaders);
         ResponseEntity<MailResponseDto> mailResp = restTemplate.exchange(mailUrl, HttpMethod.POST, mailEntity, MailResponseDto.class);
         ShoppingLogger.logger.info("Mail Response : " + mailResp.getBody().toString());
@@ -67,5 +67,16 @@ public class SellerService {
         }
         ShoppingLogger.logger.info("register method ended successfully");
         return respProduct.getBody();
+    }
+
+    public String generateSellerMailForAddProduct(String sellerName, String productName, int price, int qunatity, String productType){
+        String mailText = String.format("Hii %s\n" +
+                "Your product got added in our shopping website. Below is your product details:\n" +
+                "1. ProductName : %s\n" +
+                "2. Price : %d\n" +
+                "3. Quantity : %d\n" +
+                "4. ProductType : %s\n", sellerName, productName, price, qunatity, productType);
+
+        return mailText;
     }
 }
